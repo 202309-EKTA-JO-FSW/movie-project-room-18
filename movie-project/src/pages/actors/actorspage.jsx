@@ -25,11 +25,13 @@ const ActorsPage = () => {
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
   return (
-    <div className='d-flex flex-wrap gap-3'>
-      <h1>Actors</h1>
+    <div className='container my-7'>
+      <h1 className='container my-7'>Actors</h1>
+      <div className='d-flex flex-wrap gap-3'>
         {actors.map(actor => {
            return <Card key={actor.id} actor={actor}/>
         })}
+        </div>
     </div>
   );
 };
