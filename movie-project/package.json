@@ -22,7 +22,7 @@
     "eslint-config-next": "14.0.3",
     "postcss": "^8",
     "prettier": "^3.1.0",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.5"
   },
   "config": {
     "commitizen": {
@@ -36,11 +36,11 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-        "eslint",
-        "prettier -w"
+      "eslint",
+      "prettier -w"
     ],
     "src/**/*.{json,css,scss,md}": [
-        "prettier -w"
+      "prettier -w"
     ]
-}
+  }
 }
