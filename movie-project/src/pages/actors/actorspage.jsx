@@ -26,7 +26,7 @@ const ActorsPage = () => {
 
   return (
     <div className='container my-7'>
-      <h1 className='container my-7'>Actors</h1>
+      <h1 className="bg-gray-100 p-2 rounded mt-2 container my-7 flex items-center justify-center" style={{height: "60px", width: "150px"}}>Actors</h1>
       <div className='d-flex flex-wrap gap-3'>
         {actors.map(actor => {
            return <Card key={actor.id} actor={actor}/>
