@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-
+import Nav from '../components/Navbar';
+import { BrowserRouter as Router } from 'react-router-dom';
+import{
+ColorModeScript, // Import ColorModeScript from Chakra UI
+} from '@chakra-ui/react';
 const Home = () => {
   const[movies,SetMovies]=useState([]);
   const options = {
@@ -21,8 +25,14 @@ const Home = () => {
 
   return (
     <div>
+        <Nav/> 
+      
+       
+      
       <ul>
-        {movies.map((movie) => (
+        { 
+         
+         movies.map((movie) => (
           <li key={movie.id}>
             <Link href={`/movies/${movie.id}`}>
               <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
