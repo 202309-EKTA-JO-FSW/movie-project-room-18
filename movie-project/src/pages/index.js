@@ -5,6 +5,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import{
 ColorModeScript, // Import ColorModeScript from Chakra UI
 } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+
+
+import Hero from '@/components/Hero';
 const Home = () => {
   const[movies,SetMovies]=useState([]);
   const options = {
@@ -25,8 +29,11 @@ const Home = () => {
 
   return (
     <div>
-        <Nav/> 
-      
+       <ChakraProvider>
+       <Nav/> 
+       <Hero/>
+       </ChakraProvider>
+        
        
       
       <ul>
