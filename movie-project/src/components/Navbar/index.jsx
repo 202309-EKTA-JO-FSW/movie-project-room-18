@@ -9,7 +9,8 @@ const Navbar = () => {
   const cyan400 = '#0C090A';
 
   const [isLargerThanMd] = useMediaQuery('(min-width: 48em)');
-  const linkMargin = isLargerThanMd ? 6 : 4;
+  //المسافة بين الأزرار فوق
+  const linkMargin = isLargerThanMd ? 50 : 4;
 
   return (
     <Flex
@@ -17,24 +18,24 @@ const Navbar = () => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      padding="0.5rem"
       style={{
         background: `linear-gradient(to right, ${teal500}, ${cyan400})`,
         fontFamily: 'Roboto, sans-serif',
       }}
       color="white"
     >
-      <Flex align="center" mr={850}>
-        <NextLink href="">
-        <div style={{ width: '100px', height: '1px' }}>
-        </div>
-        <div> <Image src={logo1} width={100}/></div>
+      {/* البعد عن المركز */}
+      <Flex align="center" mr={100}>
+        <NextLink href="" passHref>
+        <div style={{ width: '1px', height: '1px' }}></div>
+        <Image src={logo1} width={75}/>
         </NextLink>
       </Flex>
 
       <Box display={{ base: 'block', md: 'none' }} onClick={() => console.log('Mobile menu clicked')}>
         {/* Replace with your mobile menu icon */}
-        <svg fill="white" width="12px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg fill="white" width="1px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <title>Menu</title>
           <path fill="currentColor" d="M3 9h14M3 4h14M3 14h14" />
         </svg>
