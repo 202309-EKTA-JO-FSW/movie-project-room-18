@@ -35,11 +35,11 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
+    "src/*/.{js,jsx,ts,tsx}": [
         "eslint",
         "prettier -w"
     ],
-    "src/**/*.{json,css,scss,md}": [
+    "src/*/.{json,css,scss,md}": [
         "prettier -w"
     ]
 }
