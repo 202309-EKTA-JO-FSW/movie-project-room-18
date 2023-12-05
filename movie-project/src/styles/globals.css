@@ -2,6 +2,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
 ul {
   list-style: none;
   padding: 0;
@@ -31,4 +32,20 @@ li img {
 h1 {
   text-align: center;
   margin-bottom: 1.5rem;
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(var(--background-rgb));
 }

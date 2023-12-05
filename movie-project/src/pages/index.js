@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Nav from '../components/Navbar';
 import { Flex,Link, Box } from '@chakra-ui/react';
+import Image from 'next/image'
 
 const Home = () => {
   const[movies,SetMovies]=useState([]);
@@ -43,3 +44,4 @@ const Home = () => {
 };
 
 export default Home;
+
