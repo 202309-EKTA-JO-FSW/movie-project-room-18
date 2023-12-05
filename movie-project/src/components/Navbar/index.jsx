@@ -48,8 +48,7 @@ const Navbar = () => {
         flexGrow={1}
         display={{ base: 'none', md: 'flex' }}
       >
-        <NextLink href="" passHref>
-          <Link
+          <Link href="" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',
@@ -60,9 +59,7 @@ const Navbar = () => {
           >
             Home
           </Link>
-        </NextLink>
-        <NextLink href="/movies" passHref>
-          <Link
+          <Link href="/movies" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',
@@ -73,9 +70,7 @@ const Navbar = () => {
           >
             Movies
           </Link>
-        </NextLink>
-        <NextLink href="/actors" passHref>
-          <Link
+          <Link href="/actors" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',
@@ -86,9 +81,7 @@ const Navbar = () => {
           >
             Actors
           </Link>
-        </NextLink>
-        <NextLink href="/about" passHref>
-          <Link
+          <Link href="/about" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',
@@ -99,7 +92,6 @@ const Navbar = () => {
           >
             About
           </Link>
-        </NextLink>
       </Flex>
     </Flex>
   );
