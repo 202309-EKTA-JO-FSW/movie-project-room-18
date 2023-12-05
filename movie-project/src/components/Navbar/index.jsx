@@ -1,13 +1,14 @@
 import { Flex, Link, Box, useMediaQuery } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import Image from 'next/image';
+import logo1 from './logo1.png';
+
 
 const Navbar = () => {
   const teal500 = '#660000';
   const cyan400 = '#0C090A';
 
   const [isLargerThanMd] = useMediaQuery('(min-width: 48em)');
-
-  // Determine margin value based on screen size
   const linkMargin = isLargerThanMd ? 6 : 4;
 
   return (
@@ -24,10 +25,10 @@ const Navbar = () => {
       color="white"
     >
       <Flex align="center" mr={850}>
-        <NextLink href="/">
-          <Link fontSize="2xl" fontWeight="bold" _hover={{ textDecoration: 'none', color: 'white' }}>
-            Your Logo
-          </Link>
+        <NextLink href="">
+        <div style={{ width: '100px', height: '1px' }}>
+        </div>
+        <div> <Image src={logo1} width={100}/></div>
         </NextLink>
       </Flex>
 
@@ -46,7 +47,7 @@ const Navbar = () => {
         flexGrow={1}
         display={{ base: 'none', md: 'flex' }}
       >
-        <NextLink href="/" passHref>
+        <NextLink href="" passHref>
           <Link
             mx={linkMargin}
             _hover={{
