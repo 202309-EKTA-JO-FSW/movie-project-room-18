@@ -9,7 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 
 import Hero from '@/components/Hero';
-import { Flex,Link, Box } from '@chakra-ui/react';
+import { Flex,Box } from '@chakra-ui/react';
+import Link from "next/link";
 
 const Home = () => {
   const[movies,SetMovies]=useState([]);
@@ -39,13 +40,12 @@ const Home = () => {
         {
          movies.map((movie) => (
           <li key={movie.id} className="rounded overflow-hidden shadow-lg">
-            <Link href={`/movies/${movie.id}`}>
-              <a className="hover:underline">
+            {/* <Link href={`/movies/${movie.id}`} > */}
+            <Link href={`/movies/${encodeURIComponent(movie.id)}`} className="hover:underline">
                 <img className="w-full" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{movie.title}</div>
                 </div>
-              </a>
             </Link>
             
        

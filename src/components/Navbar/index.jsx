@@ -28,7 +28,7 @@ const Navbar = () => {
     >
       {/* البعد عن المركز */}
       <Flex align="center" mr={100}>
-        <NextLink href="" passHref>
+        <NextLink href="/" passHref>
         <div style={{ width: '1px', height: '1px' }}></div>
         <Image src={logo1} width={75}/>
         </NextLink>
@@ -49,7 +49,7 @@ const Navbar = () => {
         flexGrow={1}
         display={{ base: 'none', md: 'flex' }}
       >
-          <Link href="" passHref
+          <Link href="/" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',
@@ -71,7 +71,7 @@ const Navbar = () => {
           >
             Movies
           </Link>
-          <Link href="/actors" passHref
+          <Link href="/actors/actorspage" passHref
             mx={linkMargin}
             _hover={{
               textDecoration: 'none',

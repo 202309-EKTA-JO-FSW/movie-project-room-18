@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Card from '@/components/Cards';
 import Navbar from '@/components/Navbar';
 import Image from 'next/image';
+import Footer from  '../../components/Footer/index';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'f75440014fddc5b0ea00553326c49c15';
@@ -26,14 +28,21 @@ const ActorsPage = () => {
   }, []);
 
   return (
-     <div className='container mx-auto px-0 pt-0 bg-white text-black text-center'>
-     <Navbar/>
-     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+
+    <div>
+    <ChakraProvider>
+    <Navbar/>
+    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
         {actors.map(actor => (
-          <Card key={actor.id} actor={actor} className="transform hover:scale-125 transition duration-700" />
+          
+          <Card key={actor.id} actor={actor} className="transform hover:scale-125 transition duration-700 justify-center" />
         ))}
         </div>
-    </div>
+   <Footer/>
+    </ChakraProvider>
+ </div>
+
+ 
   );
 };
 
