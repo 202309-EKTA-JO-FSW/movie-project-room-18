@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
 import Nav from '../components/Navbar';
+import Footer from '../components/Footer'
+import { BrowserRouter as Router } from 'react-router-dom';
+import{
+ColorModeScript, // Import ColorModeScript from Chakra UI
+} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+
+
+import Hero from '@/components/Hero';
 import { Flex,Link, Box } from '@chakra-ui/react';
 
 const Home = () => {
@@ -21,6 +30,16 @@ const Home = () => {
   },[]);
 
   return (
+    <div>
+       <ChakraProvider>
+       <Nav/> 
+       <Hero/>
+       
+       
+      
+      <ul>
+        { 
+         
     <div className="bg-gray-100 min-h-screen">
         <Nav/>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -35,9 +54,15 @@ const Home = () => {
                 </div>
               </a>
             </Link>
+            
+       
           </li>
+          
         ))}
+        
       </ul>
+      <Footer/>
+       </ChakraProvider>
     </div>
   );
 };
