@@ -1,0 +1,25 @@
+.section {
+    background-color: black;
+    height: 50%;
+    /* background-image: url("../../assets/bg-game2.jpg"); */
+    background-repeat: repeat;
+}
+.hero {
+    width: 50px;
+}
+.hs {
+    /* background-color: black; */
+    padding-left: 50%;
+    display: flex;
+    position: absolute;
+    top: -300%;
+    left: 9rem;
+}
+.search {
+    display: flex;
+    position: absolute;
+    top: 18%;
+    left: 55rem;
+    width: 31%;
+    height: 3rem;
+}

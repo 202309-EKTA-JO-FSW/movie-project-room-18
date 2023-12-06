@@ -5,8 +5,8 @@ import logo1 from './logo1.png';
 
 
 const Navbar = () => {
-  const teal500 = '#660000';
-  const cyan400 = '#0C090A';
+  const teal500 = '#0C090A';
+  const cyan400 = '#eb2acb';
 
   const [isLargerThanMd] = useMediaQuery('(min-width: 48em)');
   //المسافة بين الأزرار فوق
