@@ -32,16 +32,9 @@ const Home = () => {
   return (
     <div>
        <ChakraProvider>
-       <Nav/> 
+       <Nav/>
        <Hero/>
-       
-       
-      
-      <ul>
-        { 
-         
     <div className="bg-gray-100 min-h-screen">
-        <Nav/>
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
         {
          movies.map((movie) => (
@@ -59,8 +52,8 @@ const Home = () => {
           </li>
           
         ))}
-        
       </ul>
+      </div>
       <Footer/>
        </ChakraProvider>
     </div>

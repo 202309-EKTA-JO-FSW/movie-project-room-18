@@ -1,4 +1,5 @@
 import React from 'react';
+import logo1 from './logo1.png'
 import {
   Box,
   Container,
@@ -45,7 +46,7 @@ const LargeWithNewsletter = () => {
             overflow="hidden"
           >
             <Image
-              src="/assets/logo1.png"
+              src={logo1}
               alt="Your Logo"
               width="100%"
               height="100%"
