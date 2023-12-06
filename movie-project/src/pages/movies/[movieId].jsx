@@ -63,7 +63,7 @@ function MovieDetails(){
         <p className="mb-2"><b>Rating: </b>{movieDetails.rating}</p>
         <p className="mb-2"><b>Votes: </b>{movieDetails.votes}</p>
         <p className="mb-2"><b>Director: </b>{movieDetails.director}</p>
-        <p className="mb-4"><h2><b>Overview: </b></h2>{movieDetails.overview}</p>
+        <p className="mb-4"><b>Overview: </b>{movieDetails.overview}</p>
         <div className="flex items-center">
         <p className="mr-2">{movieDetails.productionCompany[0].name}</p>
         <img src={`https://image.tmdb.org/t/p/original/${movieDetails.productionCompany[0].logo_path}`}

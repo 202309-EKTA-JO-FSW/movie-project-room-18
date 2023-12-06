@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Nav from '../components/Navbar';
 import Footer from '../components/Footer'
@@ -10,6 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 
 import Hero from '@/components/Hero';
+import { Flex,Link, Box } from '@chakra-ui/react';
+
 const Home = () => {
   const[movies,SetMovies]=useState([]);
   const options = {
@@ -39,11 +40,19 @@ const Home = () => {
       <ul>
         { 
          
+    <div className="bg-gray-100 min-h-screen">
+        <Nav/>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+        {
          movies.map((movie) => (
-          <li key={movie.id}>
+          <li key={movie.id} className="rounded overflow-hidden shadow-lg">
             <Link href={`/movies/${movie.id}`}>
-              <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
-              {movie.title}
+              <a className="hover:underline">
+                <img className="w-full" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">{movie.title}</div>
+                </div>
+              </a>
             </Link>
             
        
@@ -59,3 +68,4 @@ const Home = () => {
 };
 
 export default Home;
+
