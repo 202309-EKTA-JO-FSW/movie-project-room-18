@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Nav from '../components/Navbar';
-import Footer from '../components/Footer'
+import Navbar from '../components/Navbar/index';
+import Footer from  '../components/Footer/index';
 import { BrowserRouter as Router } from 'react-router-dom';
 import{
 ColorModeScript, // Import ColorModeScript from Chakra UI
@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div>
        <ChakraProvider>
-       <Nav/>
+       <Navbar/>
        <Hero/>
     <div className="bg-gray-100 min-h-screen">
       <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
