@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Nav from '../components/Navbar';
+import Footer from '../components/Footer'
 import { BrowserRouter as Router } from 'react-router-dom';
 import{
 ColorModeScript, // Import ColorModeScript from Chakra UI
@@ -32,8 +33,7 @@ const Home = () => {
        <ChakraProvider>
        <Nav/> 
        <Hero/>
-       </ChakraProvider>
-        
+       
        
       
       <ul>
@@ -45,9 +45,15 @@ const Home = () => {
               <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}/>
               {movie.title}
             </Link>
+            
+       
           </li>
+          
         ))}
+        
       </ul>
+      <Footer/>
+       </ChakraProvider>
     </div>
   );
 };
