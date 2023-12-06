@@ -1,12 +1,10 @@
-import { DraftModeProvider } from "next/dist/server/async-storage/draft-mode-provider"
-import { getModifiedCookieValues } from "next/dist/server/web/spec-extension/adapters/request-cookies"
 import Link from "next/link";
 
 function Card({ actor }) {
     const IMAGE_BASE_URL = 'https://www.themoviedb.org/t/p/w235_and_h235_face';
 
     if (!actor || !actor.profile_path) {
-        return null; 
+        return null;
     }
 
     return (
@@ -27,4 +25,3 @@ function Card({ actor }) {
 }
 
 export default Card;
-

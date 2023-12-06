@@ -22,6 +22,7 @@ const Navbar = () => {
       style={{
         background: `linear-gradient(to right, ${teal500}, ${cyan400})`,
         fontFamily: 'Roboto, sans-serif',
+         width: '100%',
       }}
       color="white"
     >
