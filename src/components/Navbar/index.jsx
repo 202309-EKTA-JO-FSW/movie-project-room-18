@@ -61,7 +61,7 @@ const Navbar = () => {
           Home
         </Link>
 
-        <Box
+        {/* <Box
           position="relative"
           onMouseEnter={handleDropdownToggle}
           onMouseLeave={handleDropdownClose}
@@ -351,8 +351,18 @@ const Navbar = () => {
               </Grid>
             </Box>
           )}
-        </Box>
-
+        </Box> */}
+ <Link
+          href="/movies"
+          passHref
+          mx={4}
+          _hover={{
+            textDecoration: 'none',
+            borderBottom: '2px solid white',
+          }}
+        >
+          Movies
+        </Link>
         <Link
           href="/actors/actorspage"
           passHref
