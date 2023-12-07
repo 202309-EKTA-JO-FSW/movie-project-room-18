@@ -375,7 +375,7 @@ const Navbar = () => {
           Actors
         </Link>
         <Link
-          href="/about"
+          href="/pages/contact"
           passHref
           mx={4}
           _hover={{
@@ -383,7 +383,7 @@ const Navbar = () => {
             borderBottom: '2px solid white',
           }}
         >
-          About
+          Contact
         </Link>
       </Flex>
     </Flex>
