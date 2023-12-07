@@ -1,16 +1,27 @@
-import { Flex, Link, Box, useMediaQuery } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Flex, Link, Box, Grid, GridItem } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import logo1 from './logo1.png';
 
-
 const Navbar = () => {
-  const teal500 = '#0C090A';
-  const cyan400 = '#eb2acb';
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [isLargerThanMd] = useMediaQuery('(min-width: 48em)');
-  //المسافة بين الأزرار فوق
-  const linkMargin = isLargerThanMd ? 50 : 4;
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleDropdownClose = (e) => {
+    const isMenuOrLinkClicked =
+      e?.relatedTarget?.closest('a') ||
+      e?.relatedTarget?.closest('div') ||
+      e?.target?.closest('div') ||
+      e?.target?.closest('a');
+
+    if (!isMenuOrLinkClicked) {
+      setIsDropdownOpen(false);
+    }
+  };
 
   return (
     <Flex
@@ -19,28 +30,17 @@ const Navbar = () => {
       justify="space-between"
       wrap="wrap"
       padding="0.5rem"
-      style={{
-        background: `linear-gradient(to right, ${teal500}, ${cyan400})`,
-        fontFamily: 'Roboto, sans-serif',
-         width: '100%',
-      }}
+      fontFamily="Roboto, sans-serif"
+      background="linear-gradient(to right, #0C090A, #eb2acb)"
       color="white"
+      width="100%"
     >
-      {/* البعد عن المركز */}
       <Flex align="center" mr={100}>
         <NextLink href="/" passHref>
-        <div style={{ width: '1px', height: '1px' }}></div>
-        <Image src={logo1} width={75}/>
+          <div style={{ width: '1px', height: '1px' }}></div>
+          <Image src={logo1} width={75} />
         </NextLink>
       </Flex>
-
-      <Box display={{ base: 'block', md: 'none' }} onClick={() => console.log('Mobile menu clicked')}>
-        {/* Replace with your mobile menu icon */}
-        <svg fill="white" width="1px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <title>Menu</title>
-          <path fill="currentColor" d="M3 9h14M3 4h14M3 14h14" />
-        </svg>
-      </Box>
 
       <Flex
         width={{ base: 'full', md: 'auto' }}
@@ -49,53 +49,340 @@ const Navbar = () => {
         flexGrow={1}
         display={{ base: 'none', md: 'flex' }}
       >
-          <Link href="/" passHref
-            mx={linkMargin}
+        <Link
+          href="/"
+          passHref
+          mx={4}
+          _hover={{
+            textDecoration: 'none',
+            borderBottom: '2px solid white',
+          }}
+        >
+          Home
+        </Link>
+
+        <Box
+          position="relative"
+          onMouseEnter={handleDropdownToggle}
+          onMouseLeave={handleDropdownClose}
+        >
+          <Link
+            href="/movies"
+            passHref
+            mx={4}
+            position="relative"
             _hover={{
               textDecoration: 'none',
               borderBottom: '2px solid white',
-              color: teal500,
-              transition: 'color 0.3s ease-in-out',
             }}
-          >
-            Home
-          </Link>
-          <Link href="/movies" passHref
-            mx={linkMargin}
-            _hover={{
-              textDecoration: 'none',
-              borderBottom: '2px solid white',
-              color: teal500,
-              transition: 'color 0.3s ease-in-out',
+            onClick={(e) => {
+              e.preventDefault();
+              handleDropdownToggle();
             }}
+            onMouseLeave={handleDropdownClose}
           >
             Movies
           </Link>
-          <Link href="/actors/actorspage" passHref
-            mx={linkMargin}
-            _hover={{
-              textDecoration: 'none',
-              borderBottom: '2px solid white',
-              color: teal500,
-              transition: 'color 0.3s ease-in-out',
-            }}
-          >
-            Actors
-          </Link>
-          <Link href="/about" passHref
-            mx={linkMargin}
-            _hover={{
-              textDecoration: 'none',
-              borderBottom: '2px solid white',
-              color: teal500,
-              transition: 'color 0.3s ease-in-out',
-            }}
-          >
-            About
-          </Link>
+          {isDropdownOpen && (
+            <Box
+              position="absolute"
+              top="calc(100% + 5px)"
+              left="50%"
+              transform="translateX(-50%)"
+              backgroundColor="black"
+              zIndex="1"
+              p="2"
+              mt="2"
+              onMouseLeave={handleDropdownClose}
+              minWidth="300px"
+              boxShadow="0px 8px 16px 0px rgba(0,0,0,0.2)"
+              borderRadius="5px"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+            >
+              <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+                <GridItem>
+                  <NextLink href="/movies/category1" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Action
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Adventure
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Animation
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Comedy
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Crime
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Documentary
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Drama
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Family
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Fantasy
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      History
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Horror
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                     Music
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Mystery
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Romance
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Science Fiction
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      TV Movie
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Thriller
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      War
+                    </Link>
+                  </NextLink>
+                </GridItem>
+                <GridItem>
+                  <NextLink href="/movies/category2" passHref>
+                    <Link
+                      color="white"
+                      display="block"
+                      py="1"
+                      onClick={handleDropdownClose}
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Western
+                    </Link>
+                  </NextLink>
+                </GridItem>
+               
+              </Grid>
+            </Box>
+          )}
+        </Box>
+
+        <Link
+          href="/actors/actorspage"
+          passHref
+          mx={4}
+          _hover={{
+            textDecoration: 'none',
+            borderBottom: '2px solid white',
+          }}
+        >
+          Actors
+        </Link>
+        <Link
+          href="/about"
+          passHref
+          mx={4}
+          _hover={{
+            textDecoration: 'none',
+            borderBottom: '2px solid white',
+          }}
+        >
+          About
+        </Link>
       </Flex>
     </Flex>
   );
 };
 
 export default Navbar;
+
+
+
+
+
