@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actor Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #actorDetails {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #actorInfo {
+            flex: 1;
+            padding: 20px;
+        }
+
+        #actorImage {
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Actor Details</h1>
+    <div id="actorDetails">
+        <div id="actorInfo">
+            <table>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Actor Name</td>
+                    <td id="actorName"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td id="gender"></td>
+                </tr>
+                <tr>
+                    <td>Popularity</td>
+                    <td id="popularity"></td>
+                </tr>
+                <tr>
+                    <td>Birthday</td>
+                    <td id="birthday"></td>
+                </tr>
+                <tr>
+                    <td>Biography</td>
+                    <td id="biography"></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <img id="actorImage" alt="Actor Image">
+        </div>
+    </div>
+    <script>
+        const API_KEY = "94efbb958c3750928aa5e84dbe4193bf";
+        const BASE_URL = "https://api.themoviedb.org/3";
+        const AUTH_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGVmYmI5NThjMzc1MDkyOGFhNWU4NGRiZTQxOTNiZiIsInN1YiI6IjY1Njg4YWQ0OWFmZmMwMDBlYmNmNTcyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.oRkdxyjYiIN4Iqw5lmAUu43JCkC2ujJcjzNsnc2B1rA";
+
+        async function GetSingleActor(id) {
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': AUTH_TOKEN
+                }
+            };
+
+            const res = await fetch(`${BASE_URL}/person/${id}?language=en-US`, options);
+
+            console.log(res.status);  
+
+            if (!res.ok) {
+                const errorText = await res.text();  
+                console.error(errorText);
+                throw new Error(`Error fetching actor with ID ${id}`);
+            }
+
+            const data = await res.json();
+            return data;
+        }
+
+        const GetSingleActorImage = async (id) => {
+            const res = await fetch(`${BASE_URL}/person/${id}/images?api_key=${API_KEY}`);
+            
+            if (!res.ok) {
+                throw new Error(`Error fetching actor images with ID ${id}`);
+            }
+
+            const data = await res.json();
+            return data;
+        };
+
+        async function displayActorDetails(actorId) {
+            try {
+                const actorInfo = await GetSingleActor(actorId);
+                const actorImage = await GetSingleActorImage(actorId);
+
+                document.getElementById("actorName").innerText = `Actor Name: ${actorInfo.name}`;
+                document.getElementById("gender").innerText = `Gender: ${actorInfo.gender}`;
+                document.getElementById("popularity").innerText = `Popularity: ${actorInfo.popularity}`;
+                document.getElementById("birthday").innerText = `Birthday: ${actorInfo.birthday}`;
+                document.getElementById("biography").innerText = `Biography: ${actorInfo.biography}`;
+
+                
+                const element = document.getElementById("actorImage");
+                if (actorImage.profiles && actorImage.profiles.length > 0) {
+                    const imagePath = actorImage.profiles[0].file_path;
+                    const imageUrl = `https://image.tmdb.org/t/p/w500${imagePath}`;
+                    element.src = imageUrl;
+                } else {
+                    console.log("No profiles found for the actor.");
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        
+        displayActorDetails(500);
+    </script>
+</body>
+</html>
